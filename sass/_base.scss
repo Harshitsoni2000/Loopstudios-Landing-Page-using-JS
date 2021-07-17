@@ -1,0 +1,180 @@
+@mixin responsive($breakpoint) {
+    @if $breakpoint == tab-port {
+        @media only screen and (min-width: 37.5em) {
+            @content
+        };
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (min-width: 56.25em) {
+            @content
+        };
+    }
+    @if $breakpoint == desktop {
+        @media only screen and (min-width: 75em) {
+            @content
+        };
+    }
+}
+
+:root {
+    --color-primary: #000;
+    --color-secondary: #fff;
+    --color-dark-gray: hsl(0, 0%, 55%);
+    --color-very-dark: hsl(0, 0%, 41%);
+}
+
+.dark-theme {
+    --color-primary: #fff !important;
+    --color-secondary: #000 !important;
+    --color-dark-gray: hsl(0, 0%, 90%) !important;
+    --color-very-dark: hsl(0, 0%, 85%) !important;
+    transition: all 1s;
+}
+
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 45%;
+    @include responsive(tab-port) {
+        font-size: 52.5%;
+    }
+    @include responsive(tab-land) {
+        font-size: 57.5%;
+    }
+    @include responsive(desktop) {
+        font-size: 62.5%;
+    }
+}
+
+body {
+    opacity: 0;
+    background: var(--color-secondary);
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    min-height: 100vh;
+    line-height: 1.6;
+    position: relative;
+    display: grid;
+    grid-template: [header-start] minmax(70vh, min-content) [header-end main-start] min-content [main-end footer-start] min-content [footer-end] / 1fr repeat(6, 1.5fr) 1fr;
+    @include responsive(tab-land) {
+        grid-template: [header-start] minmax(90vh, min-content) [header-end main-start] min-content [main-end footer-start] min-content [footer-end] / 1fr repeat(6, 1.5fr) 1fr;
+    }
+    transition: transform 0.1s;
+}
+
+::selection {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+.heading-primary {
+    line-height: 1.2;
+    font-weight: 100;
+    text-transform: uppercase;
+    @media only screen and (max-width: 19em) {
+        font-size: 3rem;
+        padding: 1.5rem;
+    };
+    font-size: 4rem;
+    padding: 3rem;
+    @include responsive(tab-port) {
+        font-size: 6rem;
+    }
+    @include responsive(tab-land) {
+        font-size: 9rem;
+    }
+    max-width: 75rem;
+    transition: all 0.4s;
+}
+
+.heading-secondary {
+    color: var(--color-primary);
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 600;
+    text-transform: uppercase;
+    @include responsive(tab-land) {
+        font-size: 4rem;
+    }
+    margin-bottom: 2rem;
+    transition: all 0.5s;
+}
+
+.para {
+    font-family: 'Alata', sans-serif;
+    font-weight: 400;
+    font-weight: 1.5rem;
+    line-height: 1.4;
+    color: var(--color-dark-gray);
+    transition: all 0.5s;
+}
+
+.link {
+    text-decoration: none;
+    font-size: 2rem;
+    font-family: 'Alata', sans-serif;
+    font-weight: 400;
+    position: relative;
+    padding: 0 1rem 1rem;
+
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+    transition: all 0.5s;
+
+    &::before {
+        content: "";
+        display: inline-block;
+        width: 90%;
+        transform-origin: right;
+        @include responsive(tab-land) {
+            transform-origin: center;
+        }
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        height: 0.3rem;
+        background: var(--color-secondary);
+        border-radius: 5px;
+        transform: translateX(-50%) scaleX(0);
+        transition: all 0.25s;
+    }
+    @include responsive(tab-land) {
+        padding: 0 1rem 1rem;
+        transform-origin: center;
+        margin-bottom: 0;
+    }
+
+    &:hover {
+        &::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+    }
+}
+
+.nav-hidden {
+    opacity: 1 !important;
+    transform: translateY(7rem) !important;
+}
+
+.bar-anim {
+    background: transparent !important;
+
+    &::before {
+        top: -1.5rem !important;
+        transform: rotate(45deg) !important;
+    }
+
+    &::after {
+        bottom: -1.5rem !important;
+        transform: rotate(-45deg) !important;
+    }
+    transition: all 0.15s;
+}
