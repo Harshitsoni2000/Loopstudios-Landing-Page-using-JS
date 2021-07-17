@@ -28,8 +28,8 @@ Users should be able to:
 
 ### Links
 
-- [Solution URL](https://github.com/Harshitsoni2000/Tip-Calculator-using-JS)
-- [Live Site URL](https://harshitsoni2000.github.io/Tip-Calculator-using-JS/)
+- [Solution URL](https://github.com/Harshitsoni2000/Loopstudios-Landing-Page-using-JS)
+- [Live Site URL](https://harshitsoni2000.github.io/Loopstudios-Landing-Page-using-JS/)
 
 ## My process
 
