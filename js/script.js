@@ -18,14 +18,14 @@ navBtn.addEventListener("click", event => {
     if (Number(document.documentElement.clientWidth) <= 900) {
         links.classList.toggle("nav-hidden");
         bar.classList.toggle("bar-anim");
-        console.log(bar);
-    } else
+    } else {
         links.classList.remove("nav-hidden");
+        bar.classList.remove("bar-anim");
+    }
 });
 
 let callBack = function(entries, observer) {
     entries.forEach(function(entry) {
-        console.log(entry);
         if (entry.isIntersecting) {
             entry.target.style.opacity = "1";
             entry.target.style.transform = "translateY(0)";
